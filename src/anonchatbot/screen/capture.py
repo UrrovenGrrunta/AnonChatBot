@@ -2,31 +2,51 @@ import mss
 
 from PIL import Image
 
-def capture_monitor(area:tuple[int, int, int, int], 
-    monitor_id: int = 1    
-) -> None:
-    # Take screenshot in selected region
+from anonchatbot.local.types import AreaTuple
+
+def capture_monitor(
+    area: AreaTuple,
+    monitor_id: int = 1,
+) -> Image.Image:
     with mss.MSS() as sct:
         monitor = sct.monitors[monitor_id]
-        region = {
-            "left":area[0],
-            "top":area[1],
-            "width":area[2],
-            "height":area[3]
-        }
+
+        if area.width <= 0 or area.height <= 0:
+            raise ValueError("Width/Height must be greater than 0")
+
+        if area.left < 0 or area.top < 0:
+            raise ValueError("Left/Top margins must be non-negative")
+
+        if (
+            area.left + area.width > monitor["width"]
+            or area.top + area.height > monitor["height"]
+        ):
+            raise ValueError("Selected area exceeds monitor bounds")
+
         absolute_area = {
-            "left": monitor["left"] + region["left"],
-            "top": monitor["top"] + region["top"],
-            "width": region["width"],
-            "height": region["height"]
+            "left": monitor["left"] + area.left,
+            "top": monitor["top"] + area.top,
+            "width": area.width,
+            "height": area.height,
         }
 
         screenshot = sct.grab(absolute_area)
 
-    # Covnert mss.screenshot.ScreenShot to PIL.Image for further processing
-    screenshot_PIL = screenshot.to_pil()
-    Image.Image.show(screenshot_PIL)
+    # Convert mss.screenshot.ScreenShot to PIL.Image for further processing
+    screenshot_image = Image.frombytes(
+        mode="RGB",
+        size=screenshot.size,
+        data=screenshot.rgb,
+    )
 
-    return
+    return screenshot_image
 
-capture_monitor((200,200,600, 67), 2)
+
+area = AreaTuple(
+    left=200,
+    top=200,
+    width=600,
+    height=67,
+)
+
+capture_monitor(area, 2)
