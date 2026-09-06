@@ -10,6 +10,7 @@ dependencies = [
     { name = "mss" },
     { name = "pillow" },
     { name = "pyautogui" },
+    { name = "python-xlib" },
     { name = "rapidocr-onnxruntime" },
 ]
 
@@ -18,6 +19,7 @@ requires-dist = [
     { name = "mss", specifier = ">=10.2.0" },
     { name = "pillow", specifier = ">=12.3.0" },
     { name = "pyautogui", specifier = ">=0.9.54" },
+    { name = "python-xlib", specifier = ">=0.33" },
     { name = "rapidocr-onnxruntime", specifier = ">=1.4.4" },
 ]
 
@@ -413,6 +415,18 @@ name = "pyscreeze"
 version = "1.0.1"
 source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/ee/f0/cb456ac4f1a73723d5b866933b7986f02bacea27516629c00f8e7da94c2d/pyscreeze-1.0.1.tar.gz", hash = "sha256:cf1662710f1b46aa5ff229ee23f367da9e20af4a78e6e365bee973cad0ead4be", size = 27826, upload-time = "2024-08-20T23:03:07.291Z" }
+
+[[package]]
+name = "python-xlib"
+version = "0.33"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "six" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/86/f5/8c0653e5bb54e0cbdfe27bf32d41f27bc4e12faa8742778c17f2a71be2c0/python-xlib-0.33.tar.gz", hash = "sha256:55af7906a2c75ce6cb280a584776080602444f75815a7aff4d287bb2d7018b32", size = 269068, upload-time = "2022-12-25T18:53:00.824Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/fc/b8/ff33610932e0ee81ae7f1269c890f697d56ff74b9f5b2ee5d9b7fa2c5355/python_xlib-0.33-py2.py3-none-any.whl", hash = "sha256:c3534038d42e0df2f1392a1b30a15a4ff5fdc2b86cfa94f072bf11b10a164398", size = 182185, upload-time = "2022-12-25T18:52:58.662Z" },
+]
 
 [[package]]
 name = "python3-xlib"

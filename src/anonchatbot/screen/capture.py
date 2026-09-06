@@ -1,4 +1,4 @@
-import mss
+import mss # type: ignore
 
 from PIL import Image
 
