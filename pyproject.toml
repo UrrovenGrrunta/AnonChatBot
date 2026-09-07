@@ -8,6 +8,7 @@ authors = [
 ]
 requires-python = ">=3.12"
 dependencies = [
+    "dbus-next>=0.2.3",
     "mss>=10.2.0",
     "pillow>=12.3.0",
     "pyautogui>=0.9.54",
